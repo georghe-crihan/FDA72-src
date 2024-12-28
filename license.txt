@@ -1,0 +1,43 @@
+   Welcome to the repository of the former MTC Medincom software! Here you
+will find FDA, FDRec, SteelBox, and all other software that used to be sold
+by MTC Medincom.
+   
+   How has this software come to be free? As you may know, FDA is a very
+old program. The last time I did major work on it was three years ago, and
+everything since then was just bugfixing and minor changes. The same is
+true for all other software you'll find in this repository. Back when I was
+actively working on FDA, I was making software for profit under the
+historical name "MTC Medincom". Then from about two years ago I have
+decided that making software for profit is very bad and unmoral, and I have
+converted to free software. All my new works since then are free software.
+However, FDA and a few other programs remained commercial for a while.
+These programs were copy-protected, so converting them to free software
+required actual work. Since by that time I was considering them pretty much
+as discontinued software, I had just left them the way they had been for
+years. But now I have realized that if I'm converting to free software, I
+must convert the former MTC Medincom products as well, and so here they
+are.
+   
+   You'll find the usable (if you can call them that) distributions in the
+dist subdirectory and the sources in the src subdirectory. Each has its own
+README file. Each distribution is a self-extracting archive. Just run it
+and it will expand in the current directory. If an archive contains
+subdirectories, they will be created automatically. No special command line
+options are needed. In the golden days I used not to have to say this, but
+since a lot of people these days use DOS ports of UNIX software or run DOS
+emulators under UNIX, I have to remind you that this software is FOR DOS.
+The self-extracting archives are DOS executables, all text files and
+messages assume the IBM PC character set, all Russian texts assume the
+Cyrillic version of the latter character set (recognized by GOST as
+Alternative), and the line end sequence is <CR> <LF>.
+   
+   If you want to ask me a question, as of April 1998 my phone number in
+the USA is 440-449-0299 and my ARPA Internet SMTP mail address is
+<msokolov@blackwidow.cwru.edu>. Keep in mind, however, that all of this
+software is DISCONTINUED and UNSUPPORTED.
+
+<msokolov@ivan.Harhan.ORG>
+   
+   Happy hacking!
+   
+   Michael Sokolov
