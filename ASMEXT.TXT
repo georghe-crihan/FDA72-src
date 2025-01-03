@@ -1,0 +1,356 @@
+                 Список процедур системы ASMEXT.
+   
+   I2L& (BYVAL i%)
+   Преобразует аргумент из INTEGER (без знака) в LONG без знака,
+например, -1% превратится в 65535&.
+   
+   Eabc% (BYVAL n)
+   Функция преобразования входного аргумента n, который может
+состоять из двух или четырех байт.
+   a - количество возвращаемых байт, являющихся частью n;
+   b - количество байт в n;
+   c - номер позиции первого извлекаемого из n байта.
+   Допустимые комбинации abc: 121, 122, 141, 142, 143, 144, 241,
+243.
+   
+   SWAPBYT% (BYVAL inp%)
+   This function takes an INTEGER argument and returns it with its
+high and low bytes swapped.
+   
+   CHKSUM% (buf$, BYVAL count%)
+   This function counts the checksum of a buffer in memory. buf&
+is the buffer string, count% is the number of BYTEs (doesn't have
+to be even). The low byte of return value is the checksum, and the
+high byte is undefined. Bytes are counted, and carry is NOT added.
+   
+   CHKSUMW% (buf$, BYVAL count%)
+   This function counts the checksum of a buffer in memory. buf&
+is the buffer string, count% is the number of BYTEs (must be even,
+or the last one will not be counted). The return value is the
+checksum. Words are counted, and carry is NOT added.
+   
+   CHKSUM2% (buf$, BYVAL count%)
+   This function counts the checksum of a buffer in memory. buf&
+is the buffer string, count% is the number of BYTEs (must be even,
+or the last one will not be counted). The return value is the
+checksum. Words are counted, and carry is added.
+   
+   CRYPT& (buf$, BYVAL count%, BYVAL key&)
+   This function encrypts/decrypts a buffer by XORing it with the
+keystream. The keystream generator is an early version of Fast
+with 32-bit internal state. buf& is the buffer string, count% is
+the number of BYTEs (must be even, or the last one will not be
+counted). key& is the initial value of the internal state, and the
+return value is its final value.
+   
+   FINDIF% (buf$, BYVAL count%)
+   This functions scans a buffer to determine where do differences
+begin. That is, it takes the first byte of the buffer and counts
+how many bytes from the beginning of the buffer are equal to it
+(and hence to each other). buf& is the buffer string, count% is
+the number of BYTEs (doesn't have to be even). The return value is
+the relative position in the buffer of the first byte that's not
+equal to the preceding bytes. This function has been intended for
+FDA's data analysis engine.
+   
+   BINSTR$ (BYVAL num%, BYVAL mode%)
+   This function converts num% into an ASCII string with its
+binary representation. If mode% is 0, only the low byte of num% is
+converted and the resulting string is 8 characters long,
+otherwise, the whole num% is converted into a 16-character-long
+string.
+   
+   HALT
+   This routine locks up the system by executing CLI and HLT.
+   
+   REBOOT
+   This routine warm-reboots the system by telling POST to skip
+the memory test and jumping to FFFF:0000.
+   
+   FCRYPEXP (ax%, dx%, bx%, cx%)
+   This procedure performs one step of the pseudo-random number
+generator. On entry, the arguments contains the initial values for
+the generator's internal registers. On exit, they will contain the
+resulting values. Save this values and provide them on the next
+call to this procedure. Take the resulting pseudo-random numbers
+from cx%.
+   
+   ACPFUN% (BYVAL mma%)
+   Управление АЦП, mma - количество отсчетов, по которым
+усредняется результат. Возвращает среднее значение измерения.
+   
+   RUNSPEC$ (interp$)
+   Если функция вызвана из .EXE файла, то она игнорирует аргумент
+и возвращает полный путь к вызвавшей функцию программе без имени
+файла, с \ в конце. Если она вызвана интерпретатором, возвращает
+аргумент. Функция создает дальнюю строку, поэтому при выходе из
+программы необходимо вызвать процедуру DELSTR или RVIDEOS.
+   
+                   ***  обслуживание мыши ***
+   MINIT
+   Инициализация мыши, драйвера мыши, видеоадаптера с установкой
+режима отображения: текст 80х25, бит 7 байта атрибутов
+устанавливает яркий фон взамен мигания, курсор из 2-х линий,
+мигающий. Формирует курсор мыши в виде знакоместа с
+инвертированными цветами переднего плана и фона. Автоматически
+определяет, цветной или монохромный монитор, и устанавливает
+таблицу атрибутов в соответствии с монитором. Таблицы атрибутов
+описаны в файлах CUSTOM.COL и MONO.COL.
+   
+   MON
+   Делает курсор мыши видимым.
+   
+   MKEY (f%, x%, y%, bs%)
+   Чтение состояния клавиатуры и мыши без ожидания (сходно с
+INKEY$). Входные параметры не имеют значения и предназначены для
+модификации с целью возврата значений:
+   f% = 0 - нет изменений с момента предыдущего вызова процедуры
+(не была нажата клавиша или мышь), 1 - нажата клавиша, 2 - нажата
+мышь;
+   x% имеет значение только при f% = 1 или 2, при f% = 1 - ASCII
+код нажатой клавиши, при f% = 2 - номер строки (отсчет от нуля),
+на которой находился курсор мыши в момент нажатия кнопки мыши;
+   y% имеет значение только при f% = 1 или 2, при f% = 1 - scan -
+код нажатой клавиши, при f% = 2 - номер колонки (отсчет от нуля),
+на которой находился курсор мыши в момент нажатия кнопки мыши;
+   bs% имеет значение при f% = 0 или 2, показывает текущее
+состояние кнопок мыши: разряд 0 (маска 1) = 1 если нажата левая
+кнопка мыши, иначе 0, разряд 1 (маска 2) аналогично для правой
+кнопки.
+   
+   MOFF
+   Делает курсор мыши невидимым.
+   
+                  *** обслуживание экрана ***
+   
+   SVSCR (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%)
+   Сохраняет в памяти (типа стека) прямоугольную область экрана;
+   sr% - номер начальной строки сохраняемой области;
+   sc% - номер начальной колонки;
+   nr% - количество сохраняемых строк;
+   nc% - количество сохраняемых колонок.
+   
+   MKWIND (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%, BYVAL a%)
+   Очищает прямоугольную область экрана и заполняет ее атрибутами
+(закрашивает одним цветом);
+   sr% - номер начальной строки области;
+   sc% - номер начальной колонки;
+   nr% - количество строк;
+   nc% - количество колонок;
+   a% - номер атрибута заполнения.
+   
+   MKBORD1 (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%, BYVAL a%)
+   Рисует рамку одинарной линией;
+   sr% - номер строки левого верхнего угла;
+   sc% - то же колонки;
+   nr% - размер по вертикали в строках;
+   nc% - размер по горизонтали в колонках;
+   a% - номер атрибута линии.
+   
+   MKBORD2 (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%, BYVAL a%)
+   То же, но рамка из двойной линии.
+   
+   SCRUP (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%)
+   Прокрутка прямоугольной области экрана вверх на одну строку,
+нижняя строка остается на месте и копируется вверх;
+   sr% - номер начальной строки сдвигаемой области;
+   sc% - номер начальной колонки;
+   nr% - количество сдвигаемых строк;
+   nc% - количество сдвигаемых колонок.
+   
+   SCRDN (BYVAL sr%, BYVAL sc%, BYVAL nr%, BYVAL nc%)
+   То же, но сдвиг вниз.
+   
+   FPRINT (BYVAL row%, BYVAL col%, str$, BYVAL a%)
+   Распечатка строки с атрибутами на экране;
+   row% - номер строки (от 0);
+   col% - номер начальной колонки;
+   str$ - текст строки;
+   a% - номер атрибута.
+   
+   CHATTR (BYVAL row%, BYVAL col%, BYVAL len%, BYVAL a%)
+   Устанавливает атрибуты подстроки в строке;
+   row% - номер строки (от 0);
+   col% - номер начальной колонки;
+   len% - количество символов в подстроке;
+   a% - номер атрибута, если 0, то тень окна.
+   
+   RSTSCR
+   Восстанавливает ранее сохраненную при помощи SVSCR область
+экрана.
+   
+   CURSOR (BYVAL row%, BYVAL col%)
+   Позиционирует и включает мигающий курсор (аппаратно
+формируемый);
+   row% - номер строки (от 0);
+   col% - номер колонки.
+   
+   CUROFF
+   Выключает мигающий курсор (аппаратно формируемый).
+   
+   RVIDEOS
+   Возвращает видеоадаптер в исходное (до вызова MINIT) состояние,
+а именно: видеомода та же, что и до вызова MINIT, а параметры как
+после перезапуска.
+   
+               *** Console I/O through ROM BIOS ***
+   
+   BIOSPR (msg$, BYVAL attr%)
+   This routine displays a message on the screen using ROM BIOS.
+The attribute byte (for text modes) or foreground color (for
+graphics modes) is specified by the user. The cursor is advanced
+after each character is displayed and wrapped around at the end of
+the line, but no provision is made for scrolling or otherwise
+handling the end of the screen. The user must make sure that the
+routine doesn't go past the end of the screen. All codes are
+displayed, there are no control codes. msg$ is the message string
+and attr% is the attribute byte or foreground color.
+   
+   BIOSCHA (BYVAL rowoffset%, BYVAL col%, BYVAL count%, BYVAL
+attr%)
+   This routine changes the attributes of characters that are
+already on the screen. It takes the currect cursor position,
+subtracts rowoffset% from the row, sets the column to col%, and
+changes the attributes of count% characters starting from that
+position. Multiple lines can be spanned, but the user must make
+sure that the routine doesn't go past the end of the screen. On
+return the cursor position is unchanged. rowoffset% is the value
+to subtract from the current cursor row, col% is the starting
+column, count% is the number of characters that should have their
+attributes changed, and attr% is the new attribute byte. This
+routine has been designed for text modes, but it should also work
+for graphics modes, although probably very slow (ROM BIOS would
+have to do character recognition on each character). In this case
+attr% will specify the new foreground color.
+   
+   BIOSPR (BYVAL rowoffset%, BYVAL col%, msg$, BYVAL attr%)
+   This routine displays a message on the screen using ROM BIOS.
+It works just like BIOSPR (in fact, it calls BIOSPR internally),
+but it adjusts the initial cursor position and restores it on
+return just like BIOSCHA. msg$ and attr% have the same meaning as
+in BIOSPR, and rowoffset% and col% have the same meaning as in
+BIOSCHA.
+   
+   BIOSLOC (BYVAL row%, BYVAL col%)
+   This routine sets the cursor position. row% is the new row and
+col% is the new column.
+   
+   BIOSKEY%
+   This function waits for the user to press a key and returns its
+double-byte code.
+   
+   BIOSKNW%
+   This functions checks if a key has been pressed, but doesn't
+wait. If a key has been pressed, its double-byte code is returned.
+Otherwise, 0 is returned.
+   
+   BIOSFIB
+   This routine flushes the type-ahead ring buffer.
+   
+               *** Console I/O through DOS ***
+   
+   DOSPRIN (msg$)
+   This routine displays a message on the standard output using
+DOS (handle-based I/O). msg$ is the message string.
+   
+   DOSLINP$
+   This function reads a line from the standard input using DOS
+(handle-based I/O). The return value is the line read without any
+terminating bytes (no CR, no LF, etc.).
+   
+               *** XMS ***
+   
+   XMSINIT%
+   This function checks the presence of an XMS driver, and if it
+is present, obtains the address of its entry point. This function
+must be called before any other XMS functions can be used. It
+returns 0 if an XMS driver is found and 1 if not.
+   
+   XMSALL% (BYVAL size&, handle%)
+   This function allocates an extended memory block (EMB) of size&
+bytes. It converts the size to kilobytes (and rounds up if
+necessary) automatically. Since the XMS routines currently support
+XMS v2.00 only, the maximum EMB size is 64 MB. The allocated EMB's
+handle is put in handle%. This function returns 0 if successful, 1
+if the requested EMB size is greater than 64 MB, 2 if out of
+memory, 3 if out of handles, 4 if the XMS driver returns an
+unknown or unexpected error, and 5 if the XMS driver is not
+present or XMSINIT hasn't been called.
+   *WARNING* Since XMS is not managed by DOS, EMBs are not
+automatically freed upon program termination. In fact, since XMS
+is not really tied to DOS, EMBs are not associated with DOS
+processes at all (which is in sharp contrast with conventional
+memory blocks and DOS files). Therefore, it is imperative that
+programs using XMSALL free all allocated EMBs with XMSFREE before
+terminating. This required a rigorous approach to error handling
+and abnormal termination.
+   
+   XMSFREE% (BYVAL handle%)
+   This function frees an EMB. handle% is the handle of the EMB to
+free. This function returns 0 is successful, 1 if the XMS driver
+is not present or XMSINIT hasn't been called, 2 if the handle is
+invalid or locked, and 3 if the XMS driver returns an unknown or
+unexpected error.
+   
+   XMSGET% (BYVAL handle%, BYVAL bufaddr&, BYVAL record&, BYVAL
+size%)
+   This function retrieves a record from an EMB, treating it as an
+array of such. handle% is the EMB handle, bufaddr& is the FAR
+address of the buffer to put the retrieved record in, record& is
+the number of the record (0-relative), and size% is the record
+size in bytes (must be even). This functions returns 0 if
+successful, 1 if the XMS driver is not present or XMSINIT hasn't
+been called, 2 if the record number or size is invalid, and 3 if
+the XMS driver returns an unknown or unexpected error.
+   
+   XMSPUT% (BYVAL handle%, BYVAL bufaddr&, BYVAL record&, BYVAL
+size%)
+   This function stores a record in an EMB, treating it as an
+array of such. handle% is the EMB handle, bufaddr& is the FAR
+address of the record to be stored, record& is the number of the
+record (0-relative), and size% is the record size in bytes (must
+be even). This functions returns 0 if successful, 1 if the XMS
+driver is not present or XMSINIT hasn't been called, 2 if the
+record number or size is invalid, and 3 if the XMS driver returns
+an unknown or unexpected error.
+   
+         *** Graphics screen printing, saving, and restoring ***
+   
+   GRAPHSCRPR%
+   This function prints the screen, which must be in video mode
+12h, using the escape sequences for a 24-pin dot matrix printer
+and sending the output to the standard printer device (normally
+points to PRN). It returns 0 if successful and 1 if not.
+   
+   GRAPHSCRBMP% (filename$)
+   This function saves the screen, which must be in video mode
+12h, in a device-independent bitmap (DIB) file (also known as
+BMP). filename$ is the pathname of the DIB file to save the screen
+to. This function returns 0 if successful and 1 if not.
+   
+   GRAPHRDBMP% (filename$)
+   This function restores the screen, which must be in video mode
+12h, from a device-independent bitmap (DIB) file (also known as
+BMP), which is assumed to have been generated by GRAPHSCRBMP.
+filename$ is the pathname of the DIB file to restore the screen
+from. This function returns 0 if successful and 1 if not.
+   
+               *** Обслуживание строк ***
+   Используются внутри процедур, пользователем не вызываются.
+   
+   FINSTR& (string$)
+   Возвращает полный адрес начала строки (символов, а не
+дескриптора). Два младших байта возвращаемого значения содержат
+смещение, два старших - сегмент.
+   
+   GETSTR% (string$)
+   Заносит строку во внутренний буфер длиной 256 байт, возвращает
+длину строки.
+   
+   PUTSTR (len%)
+   Открывает новую дальнюю строку и заносит туда len% байт из
+внутреннего буфера.
+   
+   DELSTR
+   Удаляет дальнюю строку, созданную PUTSTR.
+   
