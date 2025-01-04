@@ -1,0 +1,63 @@
+000 - Window shadow AND mask                       00000111
+001 - Window shadow XOR mask
+002 - Background                                   Bright white on black
+003 - Pull down menu bar   Normal                  Black on bright white
+004 - Pull down menu bar   Selected                Bright white on black
+005 - Scroll   Arrows and slide                    Black on bright white
+006 - Scroll   Bar                                 Bright white on brown
+007 - Primary dialog    Normal                     Bright white on blue
+008 - Primary dialog    Inverse                    Bright white on black
+009 - Primary dialog    Bright                     Bright yellow on blue
+010 - Primary dialog    Bright inverse             Bright yellow on black
+011 - Primary dialog    Disabled                   White on blue
+012 - Primary dialog    Active button              Blue on bright white
+013 - Primary dialog    Active button hot key      Bright red on bright white
+014 - Primary dialog    Default button             Blue on white
+015 - Primary dialog    Default button hot key     Red on white
+016 - Primary dialog    Other button               Black on white
+017 - Primary dialog    Other button hot key       Red on white
+018 - Primary dialog    Button shadow              Black on blue
+019 - Primary dialog    Active title               Black on bright cyan
+020 - Primary dialog    Inactive title             Bright white on white
+021 - Secondary dialog    Normal                   Black on bright cyan
+022 - Secondary dialog    Inverse                  Bright white on black
+023 - Secondary dialog    Bright                   Bright red on bright cyan
+024 - Secondary dialog    Bright inverse           Bright red on black
+025 - Secondary dialog    Disabled                 Bright blue on bright cyan
+026 - Secondary dialog    Active button            Blue on bright white
+027 - Secondary dialog    Active button hot key    Bright red on bright white
+028 - Secondary dialog    Default button           Blue on white
+029 - Secondary dialog    Default button hot key   Red on white
+030 - Secondary dialog    Other button             Black on white
+031 - Secondary dialog    Other button hot key     Red on white
+032 - Secondary dialog    Button shadow            Black on bright cyan
+033 - Secondary dialog    Active title             Black on bright white
+034 - Secondary dialog    Inactive title           Black on white
+035 - Alert dialog    Normal                       Bright white on red
+036 - Alert dialog    Inverse                      Black on white
+037 - Alert dialog    Bright                       Bright yellow on red
+038 - Alert dialog    Bright inverse               Bright white on white
+039 - Alert dialog    Disabled                     Bright white on bright red
+040 - Alert dialog    Active button                Blue on bright white
+041 - Alert dialog    Active button hot key        Bright red on bright white
+042 - Alert dialog    Default button               Blue on white
+043 - Alert dialog    Default button hot key       Red on white
+044 - Alert dialog    Other button                 Black on white
+045 - Alert dialog    Other button hot key         Red on white
+046 - Alert dialog    Button shadow                Black on red
+047 - Alert dialog    Active title                 Red on bright yellow
+048 - Alert dialog    Inactive title               Black on white
+049 - Help dialog    Normal                        Bright green on black
+050 - Help dialog    Inverse                       Green on bright white
+051 - Help dialog    Bright                        Bright yellow on black
+052 - Help dialog    Bright inverse                Bright magenta on black
+053 - Help dialog    Disabled                      White on black
+054 - Help dialog    Active button                 Blue on bright white
+055 - Help dialog    Active button hot key         Bright red on bright white
+056 - Help dialog    Default button                Blue on white
+057 - Help dialog    Default button hot key        Red on white
+058 - Help dialog    Other button                  Black on white
+059 - Help dialog    Other button hot key          Red on white
+060 - Help dialog    Button shadow                 Black on black
+061 - Help dialog    Active title                  Black on bright white
+062 - Help dialog    Inactive title                Black on white

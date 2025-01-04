@@ -1,0 +1,55 @@
+000 - Window shadow AND mask                       --------
+001 - Window shadow XOR mask
+002 - Background                                   Bright white on black
+003 - Pull down menu bar   Normal                  Black on white
+004 - Pull down menu bar   Selected                Bright white on black
+005 - Scroll   Arrows and slide                    Black on white
+006 - Scroll   Bar                                 White on black
+007 - Primary dialog    Normal                     White on black
+008 - Primary dialog    Inverse                    Black on white
+009 - Primary dialog    Bright                     Bright white on black
+010 - Primary dialog    Bright inverse             Black on white
+011 - Primary dialog    Disabled                   Black on black
+012 - Primary dialog    Active button              Black on white
+013 - Primary dialog    Active button hot key      White on black
+014 - Primary dialog    Default button             Black on white
+015 - Primary dialog    Default button hot key     White on black
+016 - Primary dialog    Other button               Black on white
+017 - Primary dialog    Other button hot key       White on black
+018 - Primary dialog    Button shadow              Black on black
+019 - Secondary dialog    Normal                   Black on white
+020 - Secondary dialog    Inverse                  White on black
+021 - Secondary dialog    Bright                   Black on white
+022 - Secondary dialog    Bright inverse           Bright white on black
+023 - Secondary dialog    Disabled                 White on white
+024 - Secondary dialog    Active button            White on black
+025 - Secondary dialog    Active button hot key    Black on white
+026 - Secondary dialog    Default button           White on black
+027 - Secondary dialog    Default button hot key   Black on white
+028 - Secondary dialog    Other button             White on black
+029 - Secondary dialog    Other button hot key     Black on white
+030 - Secondary dialog    Button shadow            White on white
+031 - Alert dialog    Normal                       White on black
+032 - Alert dialog    Inverse                      Black on white
+033 - Alert dialog    Bright                       Bright white on black
+034 - Alert dialog    Bright inverse               Black on white
+035 - Alert dialog    Disabled                     Black on black
+036 - Alert dialog    Active button                Black on white
+037 - Alert dialog    Active button hot key        White on black
+038 - Alert dialog    Default button               Black on white
+039 - Alert dialog    Default button hot key       White on black
+040 - Alert dialog    Other button                 Black on white
+041 - Alert dialog    Other button hot key         White on black
+042 - Alert dialog    Button shadow                Black on black
+043 - Help dialog    Normal                        Black on white
+044 - Help dialog    Inverse                       White on black
+045 - Help dialog    Bright                        Black on white
+046 - Help dialog    Bright inverse                Black on white
+047 - Help dialog    Disabled                      Black on while
+048 - Help dialog    Active button                 White on black
+049 - Help dialog    Active button hot key         Black on white
+050 - Help dialog    Default button                White on black
+051 - Help dialog    Default button hot key        Black on white
+052 - Help dialog    Other button                  White on black
+053 - Help dialog    Other button hot key          Black on white
+054 - Help dialog    Button shadow                 White on white
